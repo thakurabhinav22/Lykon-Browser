@@ -24,7 +24,7 @@ appmenuitem-new-tab =
 appmenuitem-new-window =
     .label = New window
 appmenuitem-new-private-window =
-    .label = New private window
+    .label = Night Wolf (Private Window)
 appmenuitem-history =
   .label = History
 appmenuitem-downloads =
@@ -45,8 +45,8 @@ appmenuitem-zoom =
     .value = Zoom
 appmenuitem-more-tools =
     .label = More tools
-appmenuitem-help =
-    .label = Help
+##appmenuitem-help =
+    #.label = Help
 appmenuitem-exit2 =
     .label =
         { PLATFORM() ->
@@ -259,22 +259,21 @@ appmenu-search-history =
 
 ## Help panel
 
-appmenu-help-header =
-    .title = { -brand-shorter-name } help
-appmenu-about =
-    .label = About { -brand-shorter-name }
-    .accesskey = A
-appmenu-get-help =
-    .label = Get help
-    .accesskey = h
-appmenu-help-more-troubleshooting-info =
-    .label = More troubleshooting information
-    .accesskey = t
-appmenu-help-share-ideas =
-    .label = Share ideas and feedback…
-    .accesskey = S
-appmenu-help-switch-device =
-    .label = Switching to a new device
+## appmenu-help-header =
+    ## .title = { -brand-shorter-name } help
+## appmenu-about =
+    ## .label = About { -brand-shorter-name }
+    ## .accesskey = A
+## appmenu-get-help =
+    ## .label = Get help
+   ## .accesskey = h
+## appmenu-help-more-troubleshooting-info =
+    ## .label = More troubleshooting information
+    ## .accesskey = t
+## appmenu-help-share-ideas =
+   #### .accesskey = S
+## appmenu-help-switch-device =
+    ## .label = Switching to a new device
 
 ## appmenu-help-enter-troubleshoot-mode and appmenu-help-exit-troubleshoot-mode
 ## are mutually exclusive, so it's possible to use the same accesskey for both.

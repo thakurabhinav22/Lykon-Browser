@@ -23,9 +23,9 @@
                 <menuitem id="menu_newClassicWindow"
                           command="Tools:ClassicWindow"
                           data-l10n-id="menu-file-new-classic-window"/>
-                <menuitem id="menu_newPrivateWindow"
-                          command="Tools:PrivateBrowsing"
-                          key="key_privatebrowsing" data-l10n-id="menu-file-new-private-window"/>
+                  <menuitem id="menu_newPrivateWindow"
+                            command="Tools:PrivateBrowsing"
+                            key="key_privatebrowsing" data-l10n-id="menu-file-new-private-window"/>
                 <menuitem id="menu_openLocation"
                           hidden="true"
                           command="Browser:OpenLocation"
@@ -424,49 +424,5 @@
                 </menupopup>
             </menu>
 #endif
-            <menu id="helpMenu" data-l10n-id="menu-help">
-              <menupopup id="menu_HelpPopup">
-<!-- Note: Items under here are cloned to the AppMenu Help submenu. The cloned items
-     have their strings defined by appmenu-data-l10n-id. -->
-                <menuitem id="menu_openHelp"
-                          data-l10n-id="menu-get-help"
-                          appmenu-data-l10n-id="appmenu-get-help"
-                          />
-                <menuitem id="help_reportBrokenSite"
-                          command="cmd_reportBrokenSite"
-                          data-l10n-id="menu-report-broken-site"
-                          disabled="true"
-                          appmenu-data-l10n-id="appmenuitem-report-broken-site"/>
-                <menuitem id="feedbackPage"
-                          data-l10n-id="menu-help-share-ideas"
-                          appmenu-data-l10n-id="appmenu-help-share-ideas"/>
-                <menuitem id="helpSafeMode"
-                          data-l10n-id="menu-help-enter-troubleshoot-mode2"
-                          appmenu-data-l10n-id="appmenu-help-enter-troubleshoot-mode2"/>
-                <menuitem id="troubleShooting"
-                          data-l10n-id="menu-help-more-troubleshooting-info"
-                          appmenu-data-l10n-id="appmenu-help-more-troubleshooting-info"/>
-                <menuitem id="menu_HelpPopup_reportPhishingtoolmenu"
-                          disabled="true"
-                          hidden="true"
-                          data-l10n-id="menu-help-report-deceptive-site"
-                          appmenu-data-l10n-id="appmenu-help-report-deceptive-site"/>
-                <menuitem id="menu_HelpPopup_reportPhishingErrortoolmenu"
-                          disabled="true"
-                          data-l10n-id="menu-help-not-deceptive"
-                          appmenu-data-l10n-id="appmenu-help-not-deceptive"
-                          hidden="true"/>
-                <menuitem id="helpSwitchDevice"
-                          data-l10n-id="menu-help-switch-device"
-                          appmenu-data-l10n-id="appmenu-help-switch-device"/>
-                <menuseparator id="aboutSeparator"/>
-                <menuitem id="aboutName"
-                          data-l10n-id="menu-about"
-                          appmenu-data-l10n-id="appmenu-about"/>
-                <menuseparator id="helpPolicySeparator"
-                          hidden="true"/>
-                <menuitem id="helpPolicySupport"
-                          hidden="true"/>
-              </menupopup>
-          </menu>
+            
         </menubar>
