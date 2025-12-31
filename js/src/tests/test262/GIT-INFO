@@ -1,0 +1,9 @@
+commit 4869a68f71f9ea4c1b50ac7b1283e1fc81525581
+Author: Frank Yung-Fong Tang <ftang@chromium.org>
+Date:   Wed Dec 10 08:37:46 2025 -0800
+
+    Add test for ECMA402 PR 1015 to verify  (new Intl.Segmenter()).segment("123")[Symbol.iterator].name (#4635)
+    
+    * Add test for ECMA402 PR 1015
+    
+    https://github.com/tc39/ecma402/pull/1015

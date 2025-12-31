@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+      background-color: #000;
+      background-image: url('chrome://browser/content/CustomUI/Paper1.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #ffffff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 2rem 6rem 2rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px) saturate(160%);
+      -webkit-backdrop-filter: blur(8px) saturate(160%);
+      z-index: 0;
+    }
+
+    .top-section {
+      position: relative;
+      z-index: 10;
+      text-align: left;
+    }
+
+    .time-display {
+      font-size: 5.5rem;
+      font-weight: 200;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .date-display {
+      font-size: 1.8rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-top: 0.5rem;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    .center-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .search-container {
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1.2rem 1.8rem;
+      font-size: 1.2rem;
+      background: rgba(30, 30, 35, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      color: #fff;
+      backdrop-filter: blur(25px);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .search-input:focus {
+      outline: none;
+      background: rgba(30, 30, 35, 0.8);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Bottom Bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
+      display: flex;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .info-btn, .settings-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .info-btn:hover, .settings-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* iOS Style Center Popup */
+    .popup-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 90%;
+      max-width: 400px;
+      background: rgba(30, 30, 35, 0.95);
+      backdrop-filter: blur(40px);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 2000;
+      text-align: center;
+    }
+
+    .popup-modal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .popup-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .popup-link {
+      display: block;
+      padding: 1rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.3s ease;
+    }
+
+    .popup-link:last-child {
+      border-bottom: none;
+    }
+
+    .popup-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1999;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Settings Modal - Now Empty (or just closed) */
+    .settings-modal {
+      display: none; /* Completely removed since no theme option */
+    }
+  </style>
+</head>
+<body>
+  <div class="top-section">
+    <div class="time-display" id="timeDisplay"></div>
+    <div class="date-display" id="dateDisplay"></div>
+  </div>
+
+  <div class="center-content">
+    <div class="search-container">
+      <form class="search-form" action="https://www.google.com/search" method="get" target="_top">
+        <input type="text" name="q" class="search-input" placeholder="Search with Google or enter address" autofocus>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom Bar: Bug Icon Left, Settings Right (Settings now does nothing or can be removed) -->
+  <div class="bottom-bar">
+    <button class="info-btn" onclick="toggleInfoPopup()">🐛</button>
+    <button class="settings-btn" onclick="toggleSettings()">⚙</button>
+  </div>
+
+  <!-- Info Popup (iOS center style) -->
+  <div class="popup-modal" id="infoPopup">
+    <div class="popup-title">Contribute to Lykon</div>
+    <a href="https://lykon.vercel.app/contribute" target="_blank" class="popup-link">Suggest Improvement</a>
+    <a href="https://lykon.vercel.app/bug" target="_blank" class="popup-link">Report Bug</a>
+  </div>
+
+  <!-- Settings Modal - Kept but empty (clicking ⚙ does nothing visible) -->
+  <div class="popup-modal" id="settingsModal">
+    <div class="popup-title">Settings</div>
+    <p style="color: rgba(255,255,255,0.6); padding: 1rem;">No options available yet.</p>
+  </div>
+
+  <!-- Overlay -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeAllModals()"></div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit',
+        hour12: true 
+      }).replace(' AM', 'AM').replace(' PM', 'PM');
+
+      const date = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('timeDisplay').textContent = time;
+      document.getElementById('dateDisplay').textContent = date;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function toggleSettings() {
+      document.getElementById('settingsModal').classList.toggle('active');
+      document.getElementById('modalOverlay').classList.toggle('active');
+    }
+
+    function toggleInfoPopup() {
+      document.getElementById('infoPopup').classList.toggle('active');
+      document.getElementById('modalOverlay').classList.toggle('active');
+    }
+
+    function closeAllModals() {
+      document.getElementById('settingsModal').classList.remove('active');
+      document.getElementById('infoPopup').classList.remove('active');
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

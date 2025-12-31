@@ -1,0 +1,78 @@
+<!-- Lykon Shield — Professional Card with Working Toggle & Status -->
+
+<html:template id="template-paneLykonShield">
+
+  <!-- Section Header -->
+  <hbox class="subcategory" hidden="true" data-category="paneLykonShield">
+    <html:h1 style="flex:1; text-align:center; font-size:1.8em; color:#0A84FF;">
+      Lykon Shield
+    </html:h1>
+  </hbox>
+
+  <!-- Main Content -->
+  <groupbox hidden="true" data-category="paneLykonShield">
+    <vbox style="padding:32px; max-width:720px; margin:0 auto;">
+
+      <!-- Card -->
+      <vbox style="
+        background: rgba(255,255,255,0.06);
+        border-radius: 14px;
+        padding: 24px 28px;
+        border: 1px solid rgba(10,132,255,0.15);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      ">
+
+        <!-- Header Row -->
+        <hbox align="center" style="margin-bottom:16px;">
+          <image src="chrome://browser/skin/lykon-shield.svg"
+                 style="width:42px; height:42px; margin-right:14px;" />
+
+          <vbox flex="1">
+            <description style="font-size:1.4em; font-weight:bold; color:#FFFFFF;">
+              Lykon Shield
+            </description>
+            <description style="font-size:1em; color:#BBBBBB;">
+              Advanced Privacy Protection
+            </description>
+          </vbox>
+        </hbox>
+
+        <!-- CHECKBOX — Checked & Enabled by Default -->
+        <checkbox id="lykon-shield-toggle"
+                  preference="privacy.lykon.shield.enabled"
+                  label="Enable Lykon Shield"
+                  checked="true"
+                  style="margin: 16px 0 20px;" />
+
+        <!-- STATUS TEXT — Only One Visible -->
+        <!-- ENABLED: Visible when pref is true -->
+        <description preference="privacy.lykon.shield.enabled"
+                     hidden="false"
+                     style="font-size:1.15em; font-weight:600; color:#00DDFF; margin:8px 0;">
+          Lykon Shield is ENABLED
+        </description>
+
+        <!-- DISABLED: Visible when pref is false -->
+        <description preference="privacy.lykon.shield.enabled"
+                     inverted="true"
+                     hidden="false"
+                     style="font-size:1.15em; font-weight:600; color:#FF5555; margin:8px 0;">
+          Lykon Shield is DISABLED
+        </description>
+
+        <!-- Description -->
+        <description style="font-size:1.05em; line-height:1.6; color:#DDDDDD; margin-top:20px;">
+          Blocks trackers, ads, fingerprinting, malware, and invasive scripts in real time — keeping your browsing private and secure.
+        </description>
+
+      </vbox>
+
+      <!-- Footer -->
+      <description style="margin-top:24px; text-align:center; font-size:0.95em; color:#888;">
+        Privacy First · Always On · No Compromises
+      </description>
+
+    </vbox>
+  </groupbox>
+
+</html:template>

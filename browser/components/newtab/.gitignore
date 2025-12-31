@@ -1,0 +1,14 @@
+# Firefox / Gecko build artifacts
+obj-*
+dist/
+*.mozconfig
+*.log
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node / misc
+node_modules/
